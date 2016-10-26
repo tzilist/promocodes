@@ -22,7 +22,6 @@ server.register(plugins, (error) => {
 
       logger.info('Server started', {
         version,
-        timestamp: new Date(),
         NODE_ENV: process.env.NODE_ENV,
         uri: server.info.uri,
       });
