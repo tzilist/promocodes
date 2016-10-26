@@ -1,6 +1,4 @@
 import Hapi from 'hapi';
-import chalk from 'chalk';
-
 
 import connection from './config/connection';
 import plugins from './config/plugins';
@@ -22,9 +20,14 @@ server.register(plugins, (error) => {
         logger.error(err);
       }
 
-      logger.info(`NODE_ENV: ${process.env.NODE_ENV}`);
-      logger.info(`Version: ${version}`);
-      logger.info(`Server running at ${server.info.uri}`);
+      logger.info('Server started', {
+        version,
+        timestamp: new Date(),
+        NODE_ENV: process.env.NODE_ENV,
+        uri: server.info.uri,
+      });
     });
   }
 });
+
+export default server;

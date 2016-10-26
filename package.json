@@ -6,8 +6,8 @@
   "scripts": {
     "build": "rm -rf build && babel --out-dir build src",
     "watch": "rm -rf build && (babel --watch --out-dir build src &) && sleep 2",
-    "start": "node build/server.js",
-    "start-watch": "npm run watch && nodemon --watch build build/server.js",
+    "start": "NODE_ENV=production node build/server.js",
+    "start-watch": "npm run watch && NODE_ENV=development nodemon --watch build build/server.js",
     "lint": "eslint src",
     "lint-watch": "nodemon --watch src --exec 'eslint src'",
     "test": "npm run build && lab -S -l -v -a code build/tests",
