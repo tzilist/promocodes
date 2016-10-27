@@ -5,7 +5,7 @@ export default {
   port: process.env.PORT || 3000,
   routes: {
     files: {
-      relativeTo: Path.join(__dirname), // set this file as the root for other files
+      relativeTo: Path.join(__dirname, '../..'), // set this file as the root for other files
     },
   },
 };
