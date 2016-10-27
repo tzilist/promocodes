@@ -10,6 +10,7 @@
     "start-watch": "npm run watch && NODE_ENV=development nodemon --watch build build/server.js",
     "webpack-build": "webpack -p --progress",
     "dev": "(webpack --progress --color --watch &) && npm run start-watch",
+    "prod": "npm run clean && npm run build && npm run webpack-build && npm start",
     "clean": "rm -rf build node_modules",
     "clean-build": "rm -rf build"
   },
