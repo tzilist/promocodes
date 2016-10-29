@@ -1,15 +1,15 @@
 const Path = require('path');
 
 module.exports = {
-  entry: './public/js/index.jsx',
+  entry: './build/public/components/Index.js',
   output: {
-    path: Path.join(__dirname, 'public'),
+    path: Path.join(__dirname, 'build/public'),
     filename: 'bundle.js',
   },
   module: {
     loaders: [
       {
-        test: /\.jsx$/,
+        test: /\.js$/,
         loader: 'babel-loader',
       },
     ],

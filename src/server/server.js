@@ -1,12 +1,10 @@
 import Hapi from 'hapi';
-// import * as HapiReactViews from 'hapi-react-views';
-
 import connection from './config/connection';
 import plugins from './config/plugins';
 import logger from './config/logger';
 import routes from './config/routes';
-// import viewSet from './config/views';
-import { version } from '../package.json';
+import views from './config/views';
+import { version } from '../../package.json';
 
 const server = new Hapi.Server();
 
@@ -17,7 +15,7 @@ server.register(plugins, (error) => {
     return logger.error(error);
   }
 
-  // server.views(viewSet(HapiReactViews));
+  server.views(views);
 
   server.route(routes);
 

@@ -8,4 +8,8 @@ export default [{
       index: true,
     },
   },
+}, {
+  method: 'GET',
+  path: '/',
+  handler: (request, reply) => reply.view('App'),
 }];
