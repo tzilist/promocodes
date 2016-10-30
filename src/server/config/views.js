@@ -1,7 +1,7 @@
 import * as NodePath from 'path';
 import * as HapiReactViews from 'hapi-react-views';
 
-const path = '../../public/components';
+const path = '../../public/Components';
 
 export default {
   engines: {
@@ -11,6 +11,6 @@ export default {
   path,
   compileOptions: {
     layout: 'Layout',
-    layoutPath: NodePath.join(__dirname, path, '../Layout'),
+    layoutPath: NodePath.join(__dirname, path, '../RootComponents'),
   },
 };
