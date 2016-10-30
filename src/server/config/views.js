@@ -1,7 +1,7 @@
 import * as NodePath from 'path';
 import * as HapiReactViews from 'hapi-react-views';
 
-const path = '../../public/Components';
+const path = '../../public/components';
 
 export default {
   engines: {
