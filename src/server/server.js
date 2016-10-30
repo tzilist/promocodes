@@ -8,29 +8,33 @@ import { version } from '../../package.json';
 
 const server = new Hapi.Server();
 
+// Register our connection info
 server.connection(connection);
 
+// Register our plugins
 server.register(plugins, (error) => {
   if (error) {
-    return logger.error(error);
-  }
-
-  server.views(views);
-
-  server.route(routes);
-
-  if (!module.parent) {
-    server.start((err) => {
-      if (err) {
-        logger.error(err);
-      }
-
-      logger.info('Server started', {
-        version,
-        NODE_ENV: process.env.NODE_ENV,
-        uri: server.info.uri,
+    logger.error(error);
+  } else {
+    // Register our SSR React view
+    server.views(views);
+    // Add our endpoints and their handlers to our server
+    server.route(routes);
+    // need this if statement for testing
+    if (!module.parent) {
+      // Start it up
+      server.start((err) => {
+        if (err) {
+          logger.error(err);
+        }
+        // Log some info
+        logger.info('Server started', {
+          version,
+          NODE_ENV: process.env.NODE_ENV,
+          uri: server.info.uri,
+        });
       });
-    });
+    }
   }
 });
 

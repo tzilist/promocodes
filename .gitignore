@@ -4,3 +4,4 @@ yarn-error.log
 filelog-info.log
 filelog-error.log
 public/bundle.js
+.env
