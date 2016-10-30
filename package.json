@@ -8,7 +8,7 @@
     "watch": "rm -rf build && (babel --watch --out-dir build src &) && sleep 2",
     "start": "NODE_ENV=production node build/server/server.js",
     "start-watch": "npm run watch && NODE_ENV=development nodemon --watch build build/server/server.js",
-    "webpack-build": "webpack -p --progress",
+    "webpack-build": "webpack --progress --color",
     "dev": "(webpack --progress --color --watch &) && npm run start-watch",
     "prod": "npm run clean && npm run build && npm run webpack-build && npm start",
     "clean": "rm -rf build node_modules",

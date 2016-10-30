@@ -11,6 +11,8 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
+        exclude: /Layout/,
+        include: /public/,
       },
     ],
   },
