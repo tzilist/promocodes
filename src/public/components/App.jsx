@@ -2,46 +2,45 @@ import React from 'react';
 import Deal from './Deal';
 import dealData from '../../../sampleData/sampleData.json';
 
-var App = React.createClass({
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = { deals: [], merchant: '' };
+  }
 
-    getInitialState: function() {
-        return {deals: [], merchant: ''};
-    },
+  componentWillMount() {
+    // load and set our deals into state
+    const { deals } = dealData;
+    const merchant = deals[0].merchant;
+    this.setState({ deals, merchant });
+  }
 
-    loadDealData: function() {
-        var url = '';
+  render() {
+    const displayDeals = [];
 
-        // Loading data from API - Sample Data Loaded from Local json
+    // add a deal to the page for each one in state
+    this.state.deals.forEach((deal, i) => {
+      if (this.state.merchant === deal.merchant) {
+        displayDeals.push(
+          <Deal
+            merchant={deal.merchant}
+            dealTitle={deal.title}
+            targetUrl={deal.link}
+            key={i.toString()}
+          />
+        );
+      }
+    });
 
-        this.state.merchant = dealData.deals[0].merchant;
-        this.state.deals = dealData.deals;
-
-    },
-
-    render: function() {
-
-        this.loadDealData();
-
-        var displayDeals = [];
-        for (let i = 0; i < this.state.deals.length; i++) {
-            if (this.state.merchant == this.state.deals[i].merchant) {
-                displayDeals.push(
-                    <Deal merchant={this.state.deals[i].merchant} dealTitle={this.state.deals[i].title} targetUrl={this.state.deals[i].link} key={i.toString()}></Deal>
-                )
-            }
-        }
-
-        console.log('DisplayDeals: ', displayDeals.length);
-
-        return (
-            <div>
-                <h1>Deals for: {this.state.merchant}</h1>
-                <div className='DealsTable'>{displayDeals}
-                </div>
-            </div>
-        )
-    }
-
-});
+    return (
+      <div>
+        <h1>Deals for: {this.state.merchant}</h1>
+        <div className="DealsTable">
+          {displayDeals}
+        </div>
+      </div>
+    );
+  }
+}
 
 export default App;

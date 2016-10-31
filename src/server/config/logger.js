@@ -1,11 +1,15 @@
 import winston from 'winston';
 import chalk from 'chalk';
 
+function printMeta(meta) {
+  return Object.keys(meta).reduce((prev, curr) => `${prev}${chalk.magenta(curr)} - ${chalk.blue(meta[curr])}\n`, '');
+}
+
 function defineMeta(options, color) {
   if (options.level === 'error') {
-    return `\n\n${chalk[color]('STACK TRACE')}\n\n${JSON.stringify(options.meta.stack, undefined, 1)}`;
+    return `\n\n${chalk[color]('STACK TRACE')}\n\n${printMeta(options.meta.stack)}`;
   } else if (options.meta && Object.keys(options.meta).length) {
-    return `\n\n${chalk[color]('META DATA')}\n\n${JSON.stringify(options.meta, undefined, 1)}`;
+    return `\n\n${chalk[color]('META DATA')}\n\n${printMeta(options.meta)}`;
   }
   return '';
 }
