@@ -7,7 +7,8 @@ class App extends React.Component {
     super();
     this.state = { deals: [], merchant: '' };
   }
-
+// What is all this stuff?  This all looks new?
+// this is going to take me a bit to get my head around.  
   componentWillMount() {
     // load and set our deals into state
     const { deals } = dealData;
